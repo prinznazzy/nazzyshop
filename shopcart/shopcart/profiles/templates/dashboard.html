@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1> Customers' Loyalty online shop </h1>
+<p>logged in as {{ user.username }}</p>
+<div class="jumbotron">
+<p>Welcome...You are rewarded with a gift for every 5000pts you accumulate through products you purchase</p>
+<p>click <a href="{% url "shop:product_list" %}">here</a> to visit shop</p>
+</div>
+{% endblock %}

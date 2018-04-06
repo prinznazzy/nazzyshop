@@ -1,0 +1,48 @@
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <!-- {% url 'home' as home %}
+      {% url "shop:product_list"  as shop %}
+      {% url 'about' as about %} -->
+
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'dashboard' %}">Loyalty online shop</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+          {% url 'dashboard' as dashboard %}
+          {% url "shop:product_list"  as shop %}
+          {% url 'about' as about %}
+            <li {% if request.path == dashboard %} class="active" {% endif %}><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li {% if request.path == shop %} class="active" {% endif %}><a href="{% url "shop:product_list" %}">select products</a></li>
+            <li {% if request.path == about %} class="active" {% endif %}><a href="{% url 'about' %}">About us</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          {% if not request.user.is_authenticated %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">login/signup<span class="caret"></span></a>
+          {% else %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.username }}<span class="caret"></span></a>
+          {% endif %}
+              <ul class="dropdown-menu">
+              {% if not request.user.is_authenticated %}
+                <li><a href="{% url 'account_login' %}">Login</a></li>
+                <li><a href="{% url 'account_signup' %}">Signup</a></li>
+              {% else %}
+                <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                <li><a href="{% url 'account_change_password' %}">Change Password</a></li>
+              {% endif %}
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>

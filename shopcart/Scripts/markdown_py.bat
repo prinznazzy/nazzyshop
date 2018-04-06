@@ -1,0 +1,1 @@
+@"c:\users\sp\shopcart\scripts\python.exe" "c:\users\sp\shopcart\Scripts\markdown_py" %*
